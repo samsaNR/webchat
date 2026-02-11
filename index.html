@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WebChat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="data:application/json,{}">
+    <meta name="theme-color" content="#1a1a2e">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Экран входа -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="logo-icon">💬</div>
+                <h1>WebChat</h1>
+                <p>Введите никнейм для входа</p>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <input type="text" id="nicknameInput" placeholder="Ваш никнейм" autocomplete="off" maxlength="20">
+                    <span class="input-icon">@</span>
+                </div>
+                <button id="loginBtn" class="btn-primary">Войти</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной экран -->
+    <div id="mainScreen" class="screen">
+        <!-- Список чатов -->
+        <div id="chatList" class="panel active">
+            <div class="panel-header">
+                <div class="header-left">
+                    <h2>💬 Чаты</h2>
+                </div>
+                <div class="header-right">
+                    <button id="searchBtn" class="icon-btn" title="Найти пользователя">🔍</button>
+                    <button id="settingsBtn" class="icon-btn" title="Настройки">⚙️</button>
+                </div>
+            </div>
+
+            <!-- Поиск -->
+            <div id="searchPanel" class="search-panel hidden">
+                <div class="search-input-wrap">
+                    <input type="text" id="searchInput" placeholder="Введите никнейм..." autocomplete="off">
+                    <button id="searchGoBtn" class="icon-btn">🔍</button>
+                    <button id="searchCloseBtn" class="icon-btn">✕</button>
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
+            <!-- Список контактов -->
+            <div id="contactsList" class="contacts-list">
+                <div class="empty-state">
+                    <div class="empty-icon">👋</div>
+                    <p>Пока нет чатов</p>
+                    <p class="sub">Нажмите 🔍 чтобы найти собеседника</p>
+                </div>
+            </div>
+
+            <div class="my-profile" id="myProfile">
+                <div class="profile-avatar" id="myAvatar">U</div>
+                <span id="myNickname">username</span>
+                <span class="online-dot"></span>
+            </div>
+        </div>
+
+        <!-- Экран чата -->
+        <div id="chatScreen" class="panel">
+            <div class="panel-header chat-header">
+                <button id="backBtn" class="icon-btn">←</button>
+                <div class="chat-user-info" id="chatUserInfo">
+                    <div class="chat-avatar" id="chatAvatar">U</div>
+                    <div class="chat-user-details">
+                        <span class="chat-username" id="chatUsername">Username</span>
+                        <span class="chat-status" id="chatStatus">оффлайн</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button id="downloadChatBtn" class="icon-btn" title="Скачать чат">💾</button>
+                </div>
+            </div>
+
+            <div id="messagesContainer" class="messages-container">
+                <div class="messages-wrapper" id="messagesWrapper">
+                    <!-- Сообщения -->
+                </div>
+            </div>
+
+            <!-- Превью файла -->
+            <div id="filePreview" class="file-preview hidden">
+                <div class="file-preview-content">
+                    <img id="filePreviewImg" class="hidden" alt="">
+                    <video id="filePreviewVideo" class="hidden" controls></video>
+                    <div id="filePreviewFile" class="hidden">
+                        <span class="file-icon">📄</span>
+                        <span id="filePreviewName"></span>
+                    </div>
+                </div>
+                <button id="filePreviewClose" class="icon-btn">✕</button>
+            </div>
+
+            <!-- Набирает... -->
+            <div id="typingIndicator" class="typing-indicator hidden">
+                <span>печатает</span>
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <div class="message-input-area">
+                <button id="attachBtn" class="icon-btn">📎</button>
+                <input type="file" id="fileInput" accept="image/*,video/*,.pdf,.doc,.docx,.txt,.zip" class="hidden" multiple>
+                <div class="input-wrap">
+                    <textarea id="messageInput" placeholder="Сообщение..." rows="1"></textarea>
+                </div>
+                <button id="sendBtn" class="icon-btn send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для просмотра медиа -->
+    <div id="mediaModal" class="media-modal hidden">
+        <div class="media-modal-header">
+            <button id="mediaModalClose" class="icon-btn">✕</button>
+            <button id="mediaModalDownload" class="icon-btn">⬇️</button>
+        </div>
+        <div class="media-modal-content">
+            <img id="modalImage" class="hidden" alt="">
+            <video id="modalVideo" class="hidden" controls></video>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
