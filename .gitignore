@@ -1,1 +1,35 @@
-node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+.env.local
+
+# Project data
+*.sqlite
+*.sqlite3
+*.db
+data/
+logs/
+*.log
+
+# Editors
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Misc
+.coverage
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
