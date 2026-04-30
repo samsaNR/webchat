@@ -1,0 +1,26 @@
+[Unit]
+Description=Telegram digital-keys shop bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tgbot
+Group=tgbot
+WorkingDirectory=/opt/tg-shop-bot
+EnvironmentFile=/opt/tg-shop-bot/.env
+ExecStart=/opt/tg-shop-bot/.venv/bin/python -m tg_shop_bot
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/tg-shop-bot/data
+
+[Install]
+WantedBy=multi-user.target
